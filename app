@@ -4,7 +4,6 @@ require 'CSV'
 require 'time'
 require 'table_print'
 require 'methadone'
-require 'paint'
 require 'paint/pa'
 
 include Methadone::Main
@@ -15,7 +14,7 @@ calls = []
 main do |dir_path|
   files = []
   Dir.foreach(dir_path) do |item|
-    next if item == '.' or item =='..' or item=='.DS_Store'
+    next if item == '.' or item== '.*' or item =='..' or item=='.DS_Store' or item=='.git'
     files.push("#{dir_path}/#{item}")
   end
 
@@ -41,7 +40,7 @@ main do |dir_path|
 
 end
 
-version     '0.0.1'
+version     '0.0.1b'
 description 'Parse Cisco UC540 CDR files, and display meaningful data in table format'
 arg         :dir_path, :required
 
